@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Volunteer Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100">
+    <header class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Volunteer Hub</h1>
+            <button id="logoutBtn" class="bg-white-500 text-black-600 px-6 py-4 rounded" href="login.html">Logout</button>
+        </div>
+    </header>
+
+    <main class="container mx-auto mt-8 p-4">
+        <h2 class="text-3xl font-bold mb-4">Welcome, <span id="username"></span>!</h2>
+        
+        <section id="upcomingEvents" class="mb-8">
+            <h3 class="text-2xl font-bold mb-4">Upcoming Events</h3>
+            <div id="upcomingEventsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Upcoming events will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <section id="pastEvents" class="mb-8">
+            <h3 class="text-2xl font-bold mb-4">Past Events</h3>
+            <div id="pastEventsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Past events will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <section id="testimonials" class="mb-8">
+            <h3 class="text-2xl font-bold mb-4">Testimonials</h3>
+            <div id="testimonialsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Testimonials will be dynamically inserted here -->
+            </div>
+            <form id="testimonialForm" class="mt-4">
+                <textarea id="testimonialText" class="w-full p-2 border rounded" rows="4" placeholder="Share your experience..."></textarea>
+                <button type="submit" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Submit Testimonial</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="bg-gray-200 text-center p-4 mt-8">
+        <p>&copy; 2024 Volunteer Hub. All rights reserved.</p>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="../src/firebase/firebase-config.js"></script>
+    <script src="../src/js/user-dashboard.js"></script>
+</body>
+</html>
