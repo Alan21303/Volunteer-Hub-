@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Registration</title>
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database-compat.js"></script>
+
+    <script>
+        // TODO: Replace the following with your Firebase project configuration
+        const firebaseConfig = {
+    apiKey: "AIzaSyAA6OqUrcFdPOYRU03wWv5as8V8tNvEulY",
+    authDomain: "volunteerhub-5e701.firebaseapp.com",
+    databaseURL: "https://volunteerhub-5e701-default-rtdb.firebaseio.com",
+    projectId: "volunteerhub-5e701",
+    storageBucket: "volunteerhub-5e701.appspot.com",
+    messagingSenderId: "272447976174",
+    appId: "1:272447976174:web:1f53db7de4002042d7f9ff",
+    measurementId: "G-3BH3E5C7TQ"
+  };
+  
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Function to register a new admin
+        function registerAdmin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Create user with email and password
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+
+                    // Store the user's UID under the 'admins/' node in the Realtime Database
+                    return firebase.database().ref('admins/' + user.uid).set(true);
+                })
+                .then(() => {
+                    alert('Admin registered successfully!');
+                    document.getElementById('email').value = '';
+                    document.getElementById('password').value = '';
+                })
+                .catch((error) => {
+                    console.error('Error registering admin:', error);
+                    alert(`Error: ${error.message}`);
+                });
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Admin Registration</h2>
+    <form id="adminRegistrationForm" onsubmit="event.preventDefault(); registerAdmin();">
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter password" required>
+        </div>
+        <div>
+            <button type="submit">Register Admin</button>
+        </div>
+    </form>
+
+</body>
+</html>
